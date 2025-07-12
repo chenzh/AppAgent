@@ -1,0 +1,19 @@
+# 雪球评论分析配置文件
+
+# 阿里云通义千问API密钥（用于AI分析）
+# 请到 https://dashscope.console.aliyun.com/ 申请API密钥
+api_key: "your_api_key_here"
+
+# 数据抓取配置
+max_comments: 1000  # 最大评论数量
+timeout: 30         # 请求超时时间（秒）
+retry_times: 3      # 重试次数
+
+# 分析配置
+analysis_days: 7    # 分析天数
+max_topics: 10      # 最大话题数量
+max_comments_per_topic: 50  # 每个话题最大评论数
+
+# 输出配置
+save_raw_data: true  # 是否保存原始数据
+log_level: "INFO"    # 日志级别
