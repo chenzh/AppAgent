@@ -1,0 +1,199 @@
+# 中国今日新闻早报配置文件
+
+# 系统设置
+system:
+  # 新闻获取间隔（秒）
+  fetch_interval: 3600
+  # 最大新闻条数
+  max_news_count: 50
+  # 输出格式：txt, json, html
+  output_format: ["txt", "json"]
+  # 是否启用自动分类
+  auto_categorize: true
+  # 是否启用重要性判断
+  auto_importance: true
+
+# 新闻源配置
+news_sources:
+  # RSS新闻源
+  rss:
+    people_politics:
+      name: "人民网政治"
+      url: "http://www.people.com.cn/rss/politics.xml"
+      enabled: true
+      category: "政治"
+      
+    xinhua_politics:
+      name: "新华网政治"
+      url: "http://www.xinhuanet.com/politics/news_politics.xml"
+      enabled: true
+      category: "政治"
+      
+    people_economy:
+      name: "人民网经济"
+      url: "http://www.people.com.cn/rss/economy.xml"
+      enabled: true
+      category: "经济"
+      
+    xinhua_economy:
+      name: "新华网经济"
+      url: "http://www.xinhuanet.com/fortune/news_fortune.xml"
+      enabled: true
+      category: "经济"
+      
+    people_society:
+      name: "人民网社会"
+      url: "http://www.people.com.cn/rss/society.xml"
+      enabled: true
+      category: "社会"
+      
+    people_tech:
+      name: "人民网科技"
+      url: "http://www.people.com.cn/rss/scitech.xml"
+      enabled: true
+      category: "科技"
+      
+    people_sports:
+      name: "人民网体育"
+      url: "http://www.people.com.cn/rss/sports.xml"
+      enabled: true
+      category: "体育"
+      
+    people_international:
+      name: "人民网国际"
+      url: "http://www.people.com.cn/rss/world.xml"
+      enabled: true
+      category: "国际"
+
+  # 网页新闻源
+  web:
+    sina_news:
+      name: "新浪新闻"
+      url: "https://news.sina.com.cn/"
+      enabled: true
+      selectors:
+        news_container: ".news-item"
+        title: "h2 a"
+        summary: ".summary"
+        url: "h2 a"
+        time: ".time"
+        
+    sohu_news:
+      name: "搜狐新闻"
+      url: "https://news.sohu.com/"
+      enabled: true
+      selectors:
+        news_container: ".news-item"
+        title: ".title a"
+        summary: ".summary"
+        url: ".title a"
+        time: ".time"
+
+# 新闻分类关键词配置
+categories:
+  政治:
+    keywords: ["国务院", "政治局", "中央", "政府", "政策", "法规", "会议", "领导人", "习近平", "李克强", "全国人大", "政协"]
+    priority: 5
+    
+  经济:
+    keywords: ["经济", "金融", "股市", "银行", "央行", "GDP", "投资", "贸易", "出口", "进口", "企业", "市场", "消费"]
+    priority: 4
+    
+  科技:
+    keywords: ["科技", "技术", "互联网", "AI", "人工智能", "5G", "芯片", "创新", "数字化", "区块链", "云计算"]
+    priority: 4
+    
+  社会:
+    keywords: ["社会", "民生", "就业", "住房", "交通", "城市", "社区", "服务", "保障", "福利"]
+    priority: 3
+    
+  教育:
+    keywords: ["教育", "学校", "学生", "教师", "考试", "招生", "大学", "培训", "课程", "学历"]
+    priority: 3
+    
+  体育:
+    keywords: ["体育", "足球", "篮球", "奥运会", "比赛", "运动员", "冠军", "赛事", "运动", "健身"]
+    priority: 2
+    
+  健康:
+    keywords: ["健康", "医疗", "医院", "疾病", "疫苗", "药品", "治疗", "医生", "患者", "保健"]
+    priority: 3
+    
+  环境:
+    keywords: ["环境", "环保", "污染", "气候", "生态", "绿色", "可持续发展", "节能", "减排", "清洁"]
+    priority: 3
+    
+  文化:
+    keywords: ["文化", "艺术", "电影", "音乐", "文学", "历史", "传统", "博物馆", "展览", "演出"]
+    priority: 2
+    
+  国际:
+    keywords: ["国际", "外交", "美国", "日本", "欧洲", "联合国", "全球", "世界", "国际关系", "合作"]
+    priority: 4
+
+# 重要性判断配置
+importance:
+  # 重要关键词（重要性等级5）
+  critical_keywords: ["紧急", "重大", "重要", "突发", "首次", "突破", "创新", "政策", "法规", "决定", "发布"]
+  
+  # 权威媒体（重要性等级4）
+  authoritative_sources: ["新华社", "人民日报", "央视", "中央", "国务院", "人民网", "新华网"]
+  
+  # 一般重要关键词（重要性等级3）
+  important_keywords: ["发布", "公布", "通知", "公告", "报告", "数据", "统计", "增长", "下降"]
+  
+  # 标题长度阈值（重要性等级3）
+  title_length_threshold: 20
+
+# 输出格式配置
+output:
+  # 文本格式配置
+  txt:
+    enabled: true
+    filename_template: "news_digest_{date}.txt"
+    include_header: true
+    include_footer: true
+    max_title_length: 50
+    max_summary_length: 200
+    
+  # JSON格式配置
+  json:
+    enabled: true
+    filename_template: "news_data_{date}.json"
+    pretty_print: true
+    include_metadata: true
+    
+  # HTML格式配置
+  html:
+    enabled: false
+    filename_template: "news_digest_{date}.html"
+    template_file: "templates/news_template.html"
+    include_css: true
+    include_js: false
+
+# 过滤配置
+filters:
+  # 标题过滤关键词（包含这些关键词的新闻将被过滤）
+  title_blacklist: ["广告", "推广", "营销", "优惠", "促销"]
+  
+  # 来源过滤
+  source_blacklist: ["广告网站", "垃圾网站"]
+  
+  # 最小标题长度
+  min_title_length: 5
+  
+  # 最大标题长度
+  max_title_length: 100
+  
+  # 最小摘要长度
+  min_summary_length: 10
+  
+  # 最大摘要长度
+  max_summary_length: 500
+
+# 日志配置
+logging:
+  level: "INFO"
+  file: "news_crawler.log"
+  max_size: "10MB"
+  backup_count: 5

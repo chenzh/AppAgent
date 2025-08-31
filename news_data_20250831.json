@@ -1,0 +1,60 @@
+{
+  "date": "2025年08月31日",
+  "total_news": 6,
+  "news_items": [
+    {
+      "title": "国务院常务会议部署进一步扩大开放措施",
+      "summary": "会议决定进一步扩大对外开放，优化营商环境，推动经济高质量发展。",
+      "category": "政治",
+      "source": "新华社",
+      "url": "",
+      "publish_time": "",
+      "importance": 5
+    },
+    {
+      "title": "央行发布最新货币政策报告",
+      "summary": "报告显示当前货币政策保持稳健，将继续支持实体经济发展。",
+      "category": "经济",
+      "source": "中国人民银行",
+      "url": "",
+      "publish_time": "",
+      "importance": 4
+    },
+    {
+      "title": "新能源汽车销量再创新高",
+      "summary": "今年前11个月，我国新能源汽车销量同比增长35%，市场表现强劲。",
+      "category": "经济",
+      "source": "中国汽车工业协会",
+      "url": "",
+      "publish_time": "",
+      "importance": 3
+    },
+    {
+      "title": "5G网络建设取得重要进展",
+      "summary": "全国5G基站数量突破300万个，5G用户数超过7亿。",
+      "category": "科技",
+      "source": "工业和信息化部",
+      "url": "",
+      "publish_time": "",
+      "importance": 4
+    },
+    {
+      "title": "全国教育工作会议在京召开",
+      "summary": "会议强调要深化教育改革，提高教育质量，促进教育公平。",
+      "category": "教育",
+      "source": "教育部",
+      "url": "",
+      "publish_time": "",
+      "importance": 3
+    },
+    {
+      "title": "冬季运动项目备战冬奥会",
+      "summary": "各项目国家队积极备战，力争在冬奥会上取得好成绩。",
+      "category": "体育",
+      "source": "国家体育总局",
+      "url": "",
+      "publish_time": "",
+      "importance": 2
+    }
+  ]
+}

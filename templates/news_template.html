@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .date {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 0.9em;
+        }
+        
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+        }
+        
+        .sidebar {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: fit-content;
+        }
+        
+        .main-content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 20px;
+            background: #3498db;
+            border-radius: 2px;
+        }
+        
+        .news-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+        
+        .news-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .news-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+        
+        .news-summary {
+            color: #555;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+        
+        .news-source {
+            background: #3498db;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+        }
+        
+        .importance-badge {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .importance-5 { background: #e74c3c; }
+        .importance-4 { background: #f39c12; }
+        .importance-3 { background: #f1c40f; }
+        .importance-2 { background: #27ae60; }
+        .importance-1 { background: #95a5a6; }
+        
+        .category-list {
+            list-style: none;
+        }
+        
+        .category-item {
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .category-item:hover {
+            background: #e3f2fd;
+            border-left-color: #3498db;
+        }
+        
+        .category-item.active {
+            background: #3498db;
+            color: white;
+        }
+        
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .footer p {
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 50px;
+            color: #7f8c8d;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📰 中国今日新闻早报</h1>
+            <div class="date">{{ date }}</div>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">{{ total_news }}</div>
+                    <div class="stat-label">总新闻数</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{ categories_count }}</div>
+                    <div class="stat-label">新闻分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">{{ top_news_count }}</div>
+                    <div class="stat-label">头条新闻</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="sidebar">
+                <div class="section">
+                    <h3 class="section-title">📋 新闻分类</h3>
+                    <ul class="category-list">
+                        {% for category, count in category_stats.items() %}
+                        <li class="category-item" data-category="{{ category }}">
+                            {{ category }} ({{ count }})
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h3 class="section-title">🔥 头条新闻</h3>
+                    {% for news in top_news %}
+                    <div class="news-item">
+                        <div class="news-title">
+                            <span class="importance-badge importance-{{ news.importance }}"></span>
+                            {{ news.title }}
+                        </div>
+                        <div class="news-summary">{{ news.summary }}</div>
+                        <div class="news-meta">
+                            <span class="news-source">{{ news.source }}</span>
+                            <span>{{ news.publish_time }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="main-content">
+                {% for category, news_list in categorized_news.items() %}
+                <div class="section" data-category="{{ category }}">
+                    <h3 class="section-title">{{ category }}</h3>
+                    {% for news in news_list %}
+                    <div class="news-item">
+                        <div class="news-title">
+                            <span class="importance-badge importance-{{ news.importance }}"></span>
+                            {{ news.title }}
+                        </div>
+                        <div class="news-summary">{{ news.summary }}</div>
+                        <div class="news-meta">
+                            <span class="news-source">{{ news.source }}</span>
+                            <span>{{ news.publish_time }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>📊 今日共收集 {{ total_news }} 条新闻</p>
+            <p>⏰ 生成时间：{{ generation_time }}</p>
+            <p>🔧 由新闻早报整理工具生成</p>
+        </div>
+    </div>
+    
+    <script>
+        // 分类筛选功能
+        document.querySelectorAll('.category-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const category = this.dataset.category;
+                
+                // 更新活动状态
+                document.querySelectorAll('.category-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+                
+                // 显示/隐藏对应分类的新闻
+                document.querySelectorAll('.section[data-category]').forEach(section => {
+                    if (category === '全部' || section.dataset.category === category) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // 添加"全部"选项
+        const categoryList = document.querySelector('.category-list');
+        const allItem = document.createElement('li');
+        allItem.className = 'category-item active';
+        allItem.dataset.category = '全部';
+        allItem.textContent = '全部新闻';
+        categoryList.insertBefore(allItem, categoryList.firstChild);
+        
+        // 新闻项点击展开详情
+        document.querySelectorAll('.news-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+        });
+        
+        // 自动刷新功能（可选）
+        // setInterval(() => {
+        //     location.reload();
+        // }, 300000); // 5分钟刷新一次
+    </script>
+</body>
+</html>

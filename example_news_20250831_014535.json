@@ -1,0 +1,24 @@
+{
+  "date": "2025年08月31日",
+  "total_news": 2,
+  "news_items": [
+    {
+      "title": "示例新闻标题1",
+      "summary": "这是第一条示例新闻的摘要内容。",
+      "category": "社会",
+      "source": "示例来源",
+      "url": "",
+      "publish_time": "",
+      "importance": 3
+    },
+    {
+      "title": "示例新闻标题2",
+      "summary": "这是第二条示例新闻的摘要内容。",
+      "category": "健康",
+      "source": "示例来源",
+      "url": "",
+      "publish_time": "",
+      "importance": 2
+    }
+  ]
+}
