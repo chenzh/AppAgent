@@ -1,7 +1,4 @@
-argparse
-colorama
-dashscope
-opencv-python
-pyshine
-pyyaml
-requests
+Flask==2.3.3
+Werkzeug==2.3.7
+docx2pdf==0.1.8
+python-docx==0.8.11
